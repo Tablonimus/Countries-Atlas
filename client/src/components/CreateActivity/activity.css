@@ -1,0 +1,101 @@
+label {
+  color: black;
+}
+div {
+  margin-bottom: 10px;
+}
+
+input:invalid + span:after {
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span:after {
+  content: "✓";
+  padding-left: 5px;
+}
+label {
+  color: white;
+  font-weight: bold;
+}
+.infolabel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.formActivity {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8em;
+  margin-left: 8em;
+  flex-wrap: wrap;
+}
+.transparentdiv {
+  padding: 1em;
+  background-color: #00000036;
+
+  border-radius: 15px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+}
+.firstColumn {
+  justify-content: center;
+  display:inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 15em;
+  max-height: 20em;
+}
+.thirdColumn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 2em;
+  flex-wrap: wrap;
+  max-width: 30em;
+  max-height: 50em;
+}
+.formstructure {
+  justify-content: space-between;
+  margin-right: 5em;
+  margin-left: 5em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.labelinputdiv {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+select {
+  size: 50rem;
+}
+.addbutton {
+  height: fit-content;
+  background-color: #000000ab;
+  margin-right: 2em;
+  color: white;
+  font-weight: bold;
+  border-radius: 150px;
+}
+.addbutton::placeholder {
+  margin-left: 15px;
+}
+.error{
+ color: red;
+ font-family:sans-serif;
+ font-weight: lighter;
+ font-size: small;
+}
+/* activitybuttonh1{
+
+} */

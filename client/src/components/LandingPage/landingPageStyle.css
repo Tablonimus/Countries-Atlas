@@ -1,0 +1,33 @@
+body {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+}
+.background {
+ 
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-position: inherit; */
+
+  margin-right: 10%;
+  margin-left: 10%;
+  border-radius: 100%;
+}
+
+.landingtitle {
+  color: #ffffff;
+  justify-content: center;
+  font-size: 3em;
+}
+
+.landingbutton {
+  margin-bottom: 90%;
+  height: fit-content;
+background-color: #000000;
+opacity: 0.8;
+  font-weight: bold;
+  border-radius: 80%;
+  overflow: auto;
+}
+footer {
+  color: white;
+}

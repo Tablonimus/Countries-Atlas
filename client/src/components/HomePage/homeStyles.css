@@ -1,0 +1,83 @@
+.searchbar {
+  margin-top: 2rem;
+  justify-content: center;
+}
+.filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* margin-left: 8em;
+  margin-right: 8em; */
+}
+.filtersNav {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 3em;
+  justify-content: center;
+}
+.activitiesbutton {
+  height: 10em;
+  background-color: red;
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  background: #ff0000;
+
+  color: white;
+  font-weight: bold;
+  border-radius: 150px;
+  justify-content: center;
+  box-shadow: 4px 4px 3px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 4px 4px 3px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 4px 3px 0px rgba(0, 0, 0, 0.75);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.filterbutton {
+  height: fit-content;
+  background-color: #000000ab;
+
+  color: white;
+  font-weight: bold;
+  border-radius: 150px;
+}
+.filterbutton::placeholder {
+  margin-left: 15px;
+}
+.orderCountryCard {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+h1 {
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.pagination {
+  justify-content: center;
+}
+option {
+  background-color: #000000ab;
+
+  color: white;
+  font-weight: bold;
+  border-radius: 20%;
+}
+.transparentdivcountries {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 3px;
+  padding: 1em;
+  background-color: #00000036;
+
+  border-radius: 15px;
+  position: relative;
+
+  /* max-width: 25em;
+  max-height: 16em; */
+}
