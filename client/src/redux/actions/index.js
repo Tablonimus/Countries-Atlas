@@ -1,95 +1,91 @@
-import * as actions from "./Actions";
+import * as action from "../actions/actionTypes";
 import axios from "axios";
-
-export const getAllCountries = () => (dispatch) => {
-  //↑con constante hecho↑
-  return axios
-    .get("http://localhost:3001/countries")
-    .then((json) =>
-      dispatch({ type: actions.GET_ALL_COUNTRIES, payload: json.data })
-    )
-    .catch((error) => console.log(error));
-};
-export function getCountriesByName(name) {
+//------------GET CRIMINALS-------------------
+export function getAllCriminals() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        "http://localhost:3001/countries?name=" + name
-      );
-      return dispatch({
-        type: actions.GET_COUNTRIES_BY_NAME,
-        payload: json.data,
-      });
+      const nPage = 49;
+      const links = [];
+      for (let i = 1; i <= nPage; i++) {
+        links.push(`https://api.fbi.gov/wanted/v1/list?page=${i}`);
+      }
+
+      const promisedLinks = links.map(async (link) => await axios.get(link));
+
+      const dataFBI = await Promise.all(promisedLinks);
+      const criminals = dataFBI.map((criminals) => criminals.data).flat();
+      const payload = criminals.map((criminal) => criminal.items).flat();
+
+      return dispatch({ type: action.GET_ALL_FBI, payload: payload });
     } catch (error) {
-      console.log(error, "I can insert somthng here?");
+      console.log(error, "Error on getAllCriminals");
     }
   };
 }
-export function getCountryDetail(id) {
-  return async (dispatch) => {
-    return await axios
-      .get(`http://localhost:3001/countries/${id}`)
-      .then((json) =>
-        dispatch({ type: actions.GET_COUNTRY_DETAIL, payload: json.data })
-      )
-      .catch((error) => console.log(error));
+//-----------REWARDS FILTER---------------
+export function getRewardCriminals() {
+  return async function (dispatch) {
+    try {
+      const nPage = 49;
+      const links = [];
+      for (let i = 1; i <= nPage; i++) {
+        links.push(`https://api.fbi.gov/wanted/v1/list?page=${i}`);
+      }
+
+      const promisedLinks = links.map(async (link) => await axios.get(link));
+
+      const dataFBI = await Promise.all(promisedLinks);
+      const criminals = dataFBI.map((criminals) => criminals.data).flat();
+      const payload = criminals.map((criminal) => criminal.items).flat();
+      const payloadReward = payload.filter(
+        (crimi) =>
+          crimi?.reward_text?.length >
+          0 /* && crimi?.subjects?.includes("Kidnappings") */
+      );
+
+      return dispatch({ type: action.GET_REWARD_FBI, payload: payloadReward });
+    } catch (error) {
+      console.log(error, "Error on getAllCriminals");
+    }
+  };
+}
+//-----------CORRECT ANSWER--------
+export function getCorrectAnswer(correctAnswer) {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: action.GET_CORRECT_ANSWER,
+        payload: correctAnswer,
+      });
+    } catch (error) {
+      console.log(error, "Error on getCorrectAnswer");
+    }
   };
 }
 
-export function orderAtoZ(payload) {
-  return {
-    type: actions.ORDER_A_TO_Z,
-    payload,
+export function getIncorrectAnswer1(inccorrectAnswer1) {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: action.GET_INCORRECT1_ANSWER,
+        payload: inccorrectAnswer1,
+      });
+    } catch (error) {
+      console.log(error, "Error on getCorrectAnswer");
+    }
   };
 }
-export function clearPage(payload) {
-  return {
-    type: actions.CLEAR_STATE,
-    payload,
+export function getIncorrectAnswer2(inccorrectAnswer2) {
+  return async function (dispatch) {
+    try {
+      return dispatch({
+        type: action.GET_INCORRECT2_ANSWER,
+        payload: inccorrectAnswer2,
+      });
+    } catch (error) {
+      console.log(error, "Error on getCorrectAnswer");
+    }
   };
 }
-export function orderByContinents(payload) {
-  return {
-    type: actions.FILTER_BY_CONTINENTS,
-    payload,
-  };
-}
-//////////////////////ACTIVITIES/////////////////////////////////
-export function orderByActivities(payload) {
-  return {
-    type: actions.FILTER_BY_ACTIVITY,
-    payload,
-  };
-}
-export const createActivity = (input) => async (dispatch) => {
-  console.log(input, "input");
-  const newActivity = {
-    name: input.name,
-    duration: input.duration,
-    difficulty: input.difficulty,
-    season: input.season[0],
-    countries: input.countries,
-  };
- 
-  return await axios
-    .post("http://localhost:3001/activities", newActivity)
-    .then((json) => {
-      dispatch({
-        type: actions.CREATE_ACTIVITY,
-        payload: json.data,
-      }).catch(error=>console.log("actividad malcriada"));
-      
-    });
-};
-export const getActivities = () => (dispatch) => {
-  
-  return axios
-    .get("http://localhost:3001/activities")
-    .then((json) =>
-      dispatch({
-        type: actions.GET_ALL_ACTIVITIES,
-        payload: json.data,
-      })
-    )
-    .catch((error) => console.log(error));
-};
+
+

@@ -1,8 +1,6 @@
 const { Router } = require("express");
 
-const countryRoutes = require("./countryRoutes");
-const activityRoutes = require("./activityRoutes")
-
+const criminalRoutes = require("./criminalRoutes");
 const router = Router();
 
 // Configurar los routers
@@ -11,11 +9,6 @@ router.get("/", (req, res) => {
   res.send("GET de prueba / sola");
 });
 
-
-router.use("/countries", countryRoutes);
-router.use("/activities",activityRoutes)
-
-
-
+router.use("/criminal", criminalRoutes);
 
 module.exports = router;

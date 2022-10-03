@@ -1,24 +1,36 @@
+import logo from "./logo.svg";
 import "./App.css";
+import { getAllCriminals, getRewardCriminals,getCorrectAnswer,getIncorrectAnswer1,getIncorrectAnswer2 } from "./redux/actions/index";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
-import { Route, Switch } from "react-router-dom"; // a mano
-
-import LandingPage from "./components/LandingPage/LandingPage"; //a mano
-import Home from "./components/HomePage/Home";
-import CountryDetail from "./components/CountryDetail/CountryDetail";
-import CreateActivity from "./components/CreateActivity/CreateActivity";
-// import Error404 from "./components/Error404/Error404";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import Home from "../src/components/Home/Home";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import GameLanding from "./components/Game/GameLanding";
+import Menu from "./components/Menu/Menu";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllCriminals());
+    dispatch(getRewardCriminals())
+  }, [dispatch]);
+
+  
+
+
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path={"/"} component={LandingPage} />
-        <Route exact path={"/countries"} component={Home} />
-        <Route exact path={"/countries/:id"} component={CountryDetail} />
-        <Route exact path={"/activities"} component={CreateActivity} />
-        {/* <Route path="*" component={Error404} /> */}
-      </Switch>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/"} element={<Menu />} />
+        <Route path={"/home"} element={<Home />} />
+        <Route path={"/game"} element={<GameLanding />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
